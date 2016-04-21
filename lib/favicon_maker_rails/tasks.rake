@@ -25,8 +25,8 @@ namespace :favicon do
         FaviconMaker.generate do
 
           setup do
-            template_dir  options.root_dir.join(options.input_dir)
-            output_dir    options.root_dir.join(options.output_dir)
+            template_dir  options[:root_dir].join(options[:input_dir])
+            output_dir    options[:root_dir].join(options[:input_dir])
           end
 
           from 'favicon_base_hires.png' do
