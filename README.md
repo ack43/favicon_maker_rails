@@ -6,7 +6,7 @@ This is a very simple gem that adds a rake task to your Rails project for genera
 
 Add the following line to your Gemfile:
 
-    gem 'favicon_maker_rails'
+  gem 'favicon_maker_rails', github: 'ack43/favicon_maker_rails'
 
 ## Usage
 

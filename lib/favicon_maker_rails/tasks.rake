@@ -12,7 +12,7 @@ namespace :favicon do
       root_dir: Rails.root,
       input_dir: File.join('app', 'assets', 'images'),
       base_image: 'favicon.png',
-      output_dir: 'public',
+      output_dir: 'public/favicons',
       copy: true
     }
 
@@ -26,31 +26,44 @@ namespace :favicon do
 
           setup do
             template_dir  options[:root_dir].join(options[:input_dir])
-            output_dir    options[:root_dir].join(options[:input_dir])
+            output_dir    options[:root_dir].join(options[:output_dir])
           end
 
-          from 'favicon_base_hires.png' do
-            icon 'apple-touch-icon-152x152-precomposed.png'
-            icon 'apple-touch-icon-144x144-precomposed.png'
-            icon 'apple-touch-icon-120x120-precomposed.png'
-            icon 'apple-touch-icon-114x114-precomposed.png'
-            icon 'favicon-196x196.png'
-            icon 'favicon-160x160.png'
+          from 'favicon.png' do
+            icon '../favicon.ico', size: '64x64,32x32,24x24,16x16'
+            icon '../favicon.png', size: '16x16'
+
+            # http://realfavicongenerator.net/faq#.VxlagR8VxCW
+            icon 'favicon.ico', size: '64x64,32x32,24x24,16x16'
+            icon 'favicon-16x16.png'
+            icon 'favicon-32x32.png'
             icon 'favicon-96x96.png'
-            icon 'mstile-144x144', format: 'png'
-          end
+            # icon 'favicon-160x160.png'
+            # icon 'favicon-196x196.png'
 
-          from 'favicon_base.png' do
-            icon 'apple-touch-icon-76x76-precomposed.png'
-            icon 'apple-touch-icon-72x72-precomposed.png'
-            icon 'apple-touch-icon-60x60-precomposed.png'
+            icon 'android-chrome-36x36.png'
+            icon 'android-chrome-48x48.png'
+            icon 'android-chrome-72x72.png'
+            icon 'android-chrome-96x96.png'
+            icon 'android-chrome-144x144.png'
+            icon 'android-chrome-192x192.png'
+
+            icon 'mstile-70x70.png'
+            icon 'mstile-144x144.png'
+            icon 'mstile-150x150.png'
+            icon 'mstile-310x310.png'
+            icon 'mstile-310x150.png'
+
             icon 'apple-touch-icon-57x57-precomposed.png'
+            icon 'apple-touch-icon-60x60-precomposed.png'
+            icon 'apple-touch-icon-72x72-precomposed.png'
+            icon 'apple-touch-icon-76x76-precomposed.png'
+            icon 'apple-touch-icon-120x120-precomposed.png'
+            icon 'apple-touch-icon-144x144-precomposed.png'
+            icon 'apple-touch-icon-152x152-precomposed.png'
+            icon 'apple-touch-icon-180x180-precomposed.png'
             icon 'apple-touch-icon-precomposed.png', size: '57x57'
             icon 'apple-touch-icon.png', size: '57x57'
-            icon 'favicon-32x32.png'
-            icon 'favicon-16x16.png'
-            icon 'favicon.png', size: '16x16'
-            icon 'favicon.ico', size: '64x64,32x32,24x24,16x16'
           end
 
           each_icon do |filepath|
