@@ -29,6 +29,10 @@ namespace :favicon do
             output_dir    options[:root_dir].join(options[:output_dir])
           end
 
+          unless Dir.exist?(output_dir)
+            Dir.mkdir(output_dir)
+          end
+
           from 'favicon.png' do
             icon '../favicon.ico', size: '64x64,32x32,24x24,16x16'
             icon '../favicon.png', size: '16x16'
