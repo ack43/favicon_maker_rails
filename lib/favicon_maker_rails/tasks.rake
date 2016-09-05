@@ -56,7 +56,7 @@ namespace :favicon do
             icon 'mstile-144x144.png'
             icon 'mstile-150x150.png'
             icon 'mstile-310x310.png'
-            icon 'mstile-310x150.png'
+            # icon 'mstile-310x150.png'
 
             icon 'apple-touch-icon-57x57-precomposed.png'
             icon 'apple-touch-icon-60x60-precomposed.png'
