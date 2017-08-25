@@ -1,12 +1,15 @@
 # Favicon Maker for Rails
 
+Forked. [Original gem](https://github.com/awmichel/favicon_maker_rails)
+
 This is a very simple gem that adds a rake task to your Rails project for generating favicons of various sizes and formats from a single source file by making use of the [FaviconMaker](https://github.com/follmann/favicon_maker) library.
 
 ## Install
 
 Add the following line to your Gemfile:
-
-  gem 'favicon_maker_rails', github: 'ack43/favicon_maker_rails'
+```
+  gem 'ack_favicon_maker_rails'
+```
 
 ## Usage
 
@@ -23,4 +26,4 @@ Add the following line to your Gemfile:
 
 ## Copyright
 
-Copyright (c) 2012 Adam Michel. See LICENSE for details.
+Copyright (c) 2017 Alexander Kiseliev. See LICENSE for details.

@@ -5,9 +5,9 @@ require "favicon_maker_rails/version"
 Gem::Specification.new do |s|
   s.name        = "ack_favicon_maker_rails"
   s.version     = FaviconMakerRails::VERSION
-  s.authors     = ["Alexander Kiseliev", "Adam Michel"]
-  s.email       = ["dev@enjoycreate.ru", "awmichel90@gmail.com"]
-  s.homepage    = "http://amichel.me"
+  s.authors     = ["Alexander Kiseliev"]
+  s.email       = ["dev@redrocks.pro"]
+  s.homepage    = "https://github.com/ack43/favicon_maker_rails"
   s.summary     = %q{Simple rake task for generating favicons from a .png source.}
   s.description = %q{Uses the FaviconMaker library for generating favicons in various formats from a single .png source file.}
 
