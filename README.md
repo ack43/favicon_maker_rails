@@ -14,8 +14,11 @@ Add the following line to your Gemfile:
 ## Usage
 
 1. Place your PNG favicon* in app/assets/images, calling it favicon.png.
-2. Type `rake favicon` in your terminal.
-3. Your generated favicons will be output into your public directory.
+2. Type `rake favicon` or `rake favicon:generate[%namespace%]` in your terminal. 
+%namespace% need if you want to place in public/%namespace%. So source path will be app/assets/images/%namespace%. 
+Also gem try get %namespace%::Engine.root. Rails.root as fallback.
+You can use it for subdomains or whatever.
+3. Your generated favicons will be output into your public directory .
 
 *: The largest size used is 228x228 for Apple Retina displays, I recommend using an image this size or larger for best results.
 

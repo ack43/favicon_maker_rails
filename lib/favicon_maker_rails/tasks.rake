@@ -5,18 +5,33 @@ def say(message)
 end
 
 namespace :favicon do
-  task :generate do
+  task :generate, [:namespace] => :environment do |task, args|
+    namespace = (args.namespace || args[:namespace] || "").underscore
+    begin
+      root = if defined?(namespace.camelize.constantize) and defined?(engine = "#{namespace.camelize}::Engine".constantize)
+        "#{namespace.camelize}::Engine".constantize.root
+      else
+        Rails.root
+      end
+    rescue
+      root = Rails.root
+    end 
+
     options = {
       versions: [:apple_114, :apple_57, :apple, :fav_png, :fav_ico],
-      custom_versions: {apple_extreme_retina: {filename: "apple-touch-icon-228x228-precomposed.png", dimensions: "228x228", format: "png"}},
-      root_dir: Rails.root,
-      input_dir: File.join('app', 'assets', 'images'),
+      custom_versions: {
+        apple_extreme_retina: {
+          filename: "apple-touch-icon-228x228-precomposed.png", dimensions: "228x228", format: "png"
+        }
+      },
+      root_dir: root,
+      input_dir: File.join('app', 'assets', 'images', namespace),
       base_image: 'favicon.png',
-      output_dir: 'public/favicons',
+      output_dir: "public#{namespace.blank? ? "/" : "/#{namespace}/"}favicons",
       copy: true
     }
 
-    if File::exists?(File.join('app', 'assets', 'images', 'favicon.png'))
+    if File::exists?(File.join(root, options[:input_dir], 'favicon.png'))
       if Gem.loaded_specs['favicon_maker'].version < Gem::Version.new('1.0.0')
         FaviconMaker::Generator.create_versions(options) do |filepath|
           say "Created favicon: #{filepath}"
@@ -26,11 +41,11 @@ namespace :favicon do
 
           setup do
             template_dir  options[:root_dir].join(options[:input_dir])
-            output_dir    options[:root_dir].join(options[:output_dir])
+            output_dir    Rails.root.join(options[:output_dir])
           end
 
           unless Dir.exist?(output_dir)
-            Dir.mkdir(output_dir)
+            FileUtils.mkdir_p(output_dir)
           end
 
           from 'favicon.png' do
@@ -79,10 +94,10 @@ namespace :favicon do
         end
       end
     else
-      say 'No source favicon found, please create favicon.png in your app/assets/images directory.'
+      say "No source favicon found, please create favicon.png in your #{File.join(root, options[:input_dir])} directory."
     end
   end
 end
 
 desc 'Generate favicons from single favicon.png source'
-task favicon: "favicon:generate"
+task favicon: "favicon:generate" # shortcut
